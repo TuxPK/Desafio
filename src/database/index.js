@@ -1,12 +1,12 @@
 import Sequelize from 'sequelize';
 
 import Promotion from '../app/models/Promotion';
-//import Award from '../app/models/Award';
-//import PromotionAward from '../app/models/PromotionAward';
-// Award, PromotionAward
+import Award from '../app/models/Award';
+import PromotionAward from '../app/models/PromotionAward';
+
 import databaseConfig from '../config/database';
 
-const models = [Promotion];
+const models = [Promotion, Award, PromotionAward];
 
 class Database {
   constructor() {

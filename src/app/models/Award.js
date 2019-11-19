@@ -4,7 +4,7 @@ class Award extends Model {
   static init(sequelize) {
     super.init({
       title: Sequelize.STRING,
-      quantity: Sequelize.STRING,
+      quantity: Sequelize.INTEGER,
     },
     {
       sequelize,

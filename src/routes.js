@@ -7,13 +7,13 @@ import PromotionAwardController from './app/controllers/PromotionAwardController
 const routes = new Router();
 
 routes.get('/promotions', PromotionController.index);
-routes.get('/promotions/:name', PromotionController.show);
+routes.get('/promotions/:id', PromotionController.show);
 routes.post('/promotions', PromotionController.store);
 routes.put('/promotions', PromotionController.update);
 routes.delete('/promotions/:id', PromotionController.delete);
 
 routes.get('/awards', AwardController.index);
-routes.get('/awards/:title', AwardController.show);
+routes.get('/awards/:id', AwardController.show);
 routes.post('/awards', AwardController.store);
 routes.put('/awards', AwardController.update);
 routes.delete('/awards/:id', AwardController.delete);

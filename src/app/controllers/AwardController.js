@@ -2,11 +2,20 @@ import Award from '../models/Award';
 
 class AwardController {
   async store(req, res) {
-    const { title } = req.body;
+    const { title, quantity } = req.body;
+
+    if(!quantity) {
+      return res.status(400).json({ error: 'A quantidade informada deve ser informada' });
+    }
+
+    if(!title) {
+      return res.status(400).json({ error: 'O título deve ser informado' });
+    }
+
     const awardExists = await Award.findOne({ where: { title }, });
 
     if (awardExists) {
-      return res.status(400).json({ error: 'Já existe um prêmio com este nome' });
+      return res.status(400).json({ error: 'Já existe um prêmio com este título' });
     }
 
     const award = await Award.create(req.body);
@@ -21,19 +30,17 @@ class AwardController {
   }
   
   async show(req, res) {
-    const { title } = req.params;
-
-    const award = await Award.findOne({ where: { title }, });
+    const award = await Award.findByPk(req.params.id);
 
     if(!award) {
-      return res.status(400).json({ error: 'Prêmio não encontrada' });
+      return res.status(400).json({ error: 'Prêmio não encontrado' });
     }
 
     return res.json(award);
   }
 
   async update(req, res) {
-    const { id, title } = req.body;
+    const { id, title, quantity } = req.body;
 
     const award = await Award.findByPk(id);
 
@@ -41,7 +48,7 @@ class AwardController {
       const awardExists = await Award.findOne({ where: { title }, });
 
       if (awardExists) {
-        return res.status(400).json({ error: 'Já existe um prêmio com este nome' });
+        return res.status(400).json({ error: 'Já existe um prêmio com este título' });
       }
     }
     
@@ -58,7 +65,7 @@ class AwardController {
     const award = await Award.findByPk(req.params.id);
 
     if(!award) {
-      return res.status(400).json({ error: 'Promoção não encontrada' });
+      return res.status(400).json({ error: 'Promoção não encontrado' });
     }
     await award.destroy();
 

@@ -22,9 +22,7 @@ class PromotionController {
   }
   
   async show(req, res) {
-    const { name } = req.params;
-
-    const promotion = await Promotion.findOne({ where: { name }, });
+    const promotion = await Promotion.findByPk(req.params.id);
 
     if(!promotion) {
       return res.status(400).json({ error: 'Promoção não encontrada' });

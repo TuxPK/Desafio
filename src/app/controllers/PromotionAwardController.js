@@ -16,6 +16,8 @@ class PromotionAwardController {
   async show(req, res) {
     const { idPromotion, idAward } = req.params;
 
+    console.log(req.params);
+
     const promotionAward = await PromotionAward.findOne({ where: { idPromotion, idAward }, });
 
     if(!promotionAward) {
